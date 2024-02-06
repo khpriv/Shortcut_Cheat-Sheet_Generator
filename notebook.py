@@ -39,3 +39,6 @@ class Stock:
     def provide_price(self, index):
         ...
 
+https://www.nodc.noaa.gov/archive/arc0021/0002199/1.1/data/0-data/HTML/WMO-CODE/WMO4677.HTM
+https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current=temperature_2m&hourly=temperature_2m
+https://open-meteo.com/en/docs#current=temperature_2m,weather_code&hourly=temperature_2m,apparent_temperature&forecast_days=3
