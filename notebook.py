@@ -1,44 +1,41 @@
-"""
-TO DO:
-- api call to get stock price
-- data structure to store in file:
-    - name of stock
-    - initial price
-    - initial timestamp
-    - current price
-    - store historic price (or receive it)
-- total the value of single stock
-- introduce portfolio of stocks
-- total the value of all/select stocks
-- plot of price of stock or whole portfolio
-- gui
-"""
+import sys
 
-from datetime import datetime
+import PIL.ImageOps
+from PIL import Image, ImageDraw, ImageFont
+
+sizefinal = (1024, 1024)
+filename = 'pliczek'
+margines = 10
+font_desc = ImageFont.truetype("arial.ttf", 15)
 
 
-class Stock:
-    def __init__(self, index):
-        if not index:
-            raise ValueError('Unknown index')
-        self._index = index
-        self._timestamp = datetime.timestamp(datetime.now())
-        self._price_bought = provide_price(index)
+def draw_rectangle(image, spacing):
+    border = ImageDraw.Draw(image)
+    border.rounded_rectangle([(spacing, spacing), (image.width - spacing, image.height - spacing)], width=3, fill=None, outline='lightgrey', radius=30)
 
-    def __str__(self):
-        return 'Dont do this'
+    return image
 
-    @property
-    def timestamp(self):
-        return self._timestamp
 
-    @property
-    def price_bought(self):
-        return self._price_bought
+def create_panel(size=(128, 128)):
+    new_panel = Image.new('RGBA', size, 'black')
+    return new_panel
 
-    def provide_price(self, index):
-        ...
 
-https://www.nodc.noaa.gov/archive/arc0021/0002199/1.1/data/0-data/HTML/WMO-CODE/WMO4677.HTM
-https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current=temperature_2m&hourly=temperature_2m
-https://open-meteo.com/en/docs#current=temperature_2m,weather_code&hourly=temperature_2m,apparent_temperature&forecast_days=3
+def write_multiline(image):
+    tekst = ImageDraw.Draw(image)
+    # global font_desc
+    tekst.text((10, 25), "world", font=font_desc)
+    return image
+
+
+def main():
+    keymap = Image.new('RGBA', sizefinal, 'black')
+    panel = create_panel(sizefinal)
+    keymap = write_multiline(keymap)
+    # keymap = draw_rectangle(keymap, margines)
+
+    keymap.save(f'{filename}.png')
+
+
+if __name__ in '__main__':
+    main()
