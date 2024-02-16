@@ -1,6 +1,3 @@
-import sys
-
-import PIL.ImageOps
 from PIL import Image, ImageDraw, ImageFont
 
 sizefinal = (1024, 1024)
