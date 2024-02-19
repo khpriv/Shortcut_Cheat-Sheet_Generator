@@ -90,6 +90,5 @@ def main():
     panel.save(f'{filename}.png')
 
 
-
 if __name__ in '__main__':
     main()

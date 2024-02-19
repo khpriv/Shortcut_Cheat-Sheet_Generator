@@ -71,7 +71,6 @@ def create_panel():
 def main():
     panel = create_panel()
     panel.save(f'{filename}.png')
-    
 
 
 if __name__ in '__main__':
