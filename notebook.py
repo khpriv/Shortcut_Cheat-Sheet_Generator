@@ -40,8 +40,6 @@ def draw_border(image, spacing):
     return image
 
 
-
-
 def get_size(size=sizefinal_alt):
     return default_width_of_panel, description_action.count('\n') * default_line_height
 
