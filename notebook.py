@@ -44,6 +44,7 @@ def get_size(size=sizefinal_alt):
     return default_width_of_panel, description_action.count('\n') * default_line_height
 
 
+
 def write_multiline(image):
     tekst = ImageDraw.Draw(image)
     tekst.multiline_text((0, 0),
