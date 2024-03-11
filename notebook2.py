@@ -9,6 +9,7 @@ line_spacing = 20
 default_line_height = font_size + line_spacing
 default_width_of_panel = 400
 font_desc = ImageFont.truetype("arial.ttf", font_size)
+i = 0
 
 description_action = ((f'action\n'
                        f'action1\n'
@@ -19,12 +20,12 @@ description_action = ((f'action\n'
                        f'action6\n'
                        ),
                       (f'action\n'
-                       f'action1\n'
-                       f'action2\n'
-                       f'action3\n'
-                       f'action4\n'
-                       f'action5\n'
-                       f'action6\n'
+                       f'action7\n'
+                       f'action8\n'
+                       f'action9\n'
+                       f'action10\n'
+                       f'action11\n'
+                       f'action12\n'
                        ))
 description_key = ((f'CTRL + K\n'
                     f'CTRL + W\n'
@@ -35,12 +36,12 @@ description_key = ((f'CTRL + K\n'
                     f'CTRL + W\n'
                     ),
                    (f'CTRL + K\n'
-                    f'CTRL + W\n'
-                    f'CTRL + W\n'
-                    f'CTRL + W\n'
-                    f'CTRL + W\n'
-                    f'CTRL + W\n'
-                    f'CTRL + W\n'
+                    f'CTRL + L\n'
+                    f'CTRL + L\n'
+                    f'CTRL + L\n'
+                    f'CTRL + L\n'
+                    f'CTRL + L\n'
+                    f'CTRL + L\n'
                     ))
 
 
@@ -52,23 +53,23 @@ def draw_border(image, spacing):
                              fill=None,
                              outline='grey',
                              radius=30)
-
     return image
 
 
 def get_size(size=sizefinal_alt):
-    return default_width_of_panel, description_action.count('\n') * default_line_height
+    return default_width_of_panel, description_action[i].count('\n') * default_line_height
 
 
 def write_multiline(image):
+    # global i
     tekst = ImageDraw.Draw(image)
     tekst.multiline_text((0, 0),
-                         description_action,
+                         description_action[i],
                          align='left', font=font_desc,
                          spacing=line_spacing,
                          fill='lightgrey')
     tekst.multiline_text((default_width_of_panel, 0),
-                         description_key,
+                         description_key[i],
                          align='right',
                          font=font_desc,
                          anchor='ra',
@@ -85,9 +86,11 @@ def create_panel():
 
 
 def main():
-    for keys, actions in description_key, description_action:
+    global i
+    for _ in range(len(description_action)):
         panel = create_panel()
-    panel.save(f'{filename}.png')
+        panel.save(f'{filename}{i}.png')
+        i = i + 1
 
 
 if __name__ in '__main__':

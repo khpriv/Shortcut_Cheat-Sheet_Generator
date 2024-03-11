@@ -3,7 +3,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 sizefinal_alt = (1024, 1024)
 filename = 'pliczek'
-margines = 20
+margin = 20
 font_size = 25
 line_spacing = 20
 default_line_height = font_size + line_spacing
@@ -44,7 +44,6 @@ def get_size(size=sizefinal_alt):
     return default_width_of_panel, description_action.count('\n') * default_line_height
 
 
-
 def write_multiline(image):
     tekst = ImageDraw.Draw(image)
     tekst.multiline_text((0, 0),
@@ -65,7 +64,7 @@ def create_panel():
     size_no_border = get_size()
     keymap = Image.new('RGBA', size_no_border, 'black')
     keymap = write_multiline(keymap)
-    keymap = draw_border(keymap, margines)
+    keymap = draw_border(keymap, margin)
     return keymap
 
 
