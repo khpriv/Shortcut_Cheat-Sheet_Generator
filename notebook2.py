@@ -85,12 +85,22 @@ def create_panel():
     return keymap
 
 
+def generate_merged_panel(panels_list):
+    for panel in panels_list:
+
+    return final_image
+
+
 def main():
     global i
+    panels = list()
     for _ in range(len(description_action)):
         panel = create_panel()
         panel.save(f'{filename}{i}.png')
+        panels.append(panel)
         i = i + 1
+    final_image = generate_merged_panel(panels)
+    final_image.save(f'{filename}_final.png')
 
 
 if __name__ in '__main__':
