@@ -1,32 +1,29 @@
+import sys
 import PIL.ImageOps
 from PIL import Image, ImageDraw, ImageFont
 
+filename = 'sheet'
 # Leave as "" if You don't want to add title banner
 banner_title = "Tytul"
-
-sizefinal_alt = (1024, 1024)
-filename = 'sheet'
+# margin
 margines = 20
+# multiline text line spacing
+line_spacing = 20
 font_size_desc = 25
 font_size_title = 70
-line_spacing = 20
-default_line_height = font_size_desc + line_spacing
 # Controls how far apart "action" and "key" columns are
 default_width_of_panel = 400
-banner_height = font_size_title * 2
+# font = "arial.ttf"  # font for windows machines
+font = "DroidSans.ttf"  # font for Linux Machines
 
-# default colors
-bg_color = 'white'
-border_color = 'white'
-font_desc_color = 'black'
-font_title_color = 'black'
+# uncomment one style
+style = 'OLED'
+# style = 'printer'
+# style = 'ROSEPINE'
+# style = 'GRUVBOX'
+# style = 'LIGHT'
+# style = 'DARK'
 
-font = "arial.ttf"  # font for windows machines
-
-font_title = ImageFont.truetype(font, font_size_title)
-font_desc = ImageFont.truetype(font, font_size_desc)
-
-i = 0  # used as index for description lists
 # Make sure that every "key" has its "action", \n is also ok.
 description_action = ((f'action\n'
                        f'action1\n'
@@ -67,6 +64,23 @@ description_key = ((f'CTRL + K\n'
                     f'CTRL + L\n'
                     ))
 
+try:
+    font_title = ImageFont.truetype(font, font_size_title)
+    font_desc = ImageFont.truetype(font, font_size_desc)
+except OSError:
+    sys.exit("Font can't be found or opened")
+i = 0  # used as index for description lists
+sizefinal_alt = (1024, 1024)
+
+# default colors
+bg_color = 'white'
+border_color = 'white'
+font_desc_color = 'black'
+font_title_color = 'black'
+
+banner_height = font_size_title * 2
+default_line_height = font_size_desc + line_spacing
+
 
 def set_style(styl):
     global bg_color
@@ -79,6 +93,59 @@ def set_style(styl):
             border_color = 'grey'
             font_desc_color = 'lightgray'
             font_title_color = 'lightgray'
+        case 'printer':
+            bg_color = 'white'
+            border_color = 'lightgray'
+            font_desc_color = 'black'
+            font_title_color = 'black'
+        case 'ROSEPINE':
+            bg_color = 38, 35, 58
+            border_color = 235, 111, 146
+            font_desc_color = 224, 222, 244
+            font_title_color = 224, 222, 244
+        case 'GRUVBOX':
+            bg_color = 40, 40, 40
+            border_color = 152, 151, 26
+            font_desc_color = 215, 153, 33
+            font_title_color = 157, 0, 6
+        case 'LIGHT':
+            bg_color = 255, 255, 255
+            border_color = 12, 28, 112
+            font_desc_color = 0, 0, 0
+            font_title_color = 0, 0, 0
+        case 'DARK':
+            bg_color = 21, 25, 29
+            border_color = 49, 59, 75
+            font_desc_color = 111, 111, 111
+            font_title_color = 111, 111, 111
+        case _:
+            bg_color = 'white'
+            border_color = 'white'
+            font_desc_color = 'black'
+            font_title_color = 'black'
+
+
+def main():
+    set_style(style)
+    global i
+    panels = list()
+    for _ in range(len(description_action)):
+        panel = create_panel()
+        # panel.save(f'{filename}{i}.png')
+        panels.append(panel)
+        i = i + 1
+    final_image = generate_merged_panel(panels)
+    if banner_title:
+        final_image = add_title_banner(final_image)
+    final_image.save(f'{filename}_final.png')
+
+
+def create_panel():
+    size_no_border = get_size()
+    keymap = Image.new('RGBA', size_no_border, bg_color)
+    keymap = write_multiline(keymap)
+    keymap = draw_border(keymap, margines)
+    return keymap
 
 
 def draw_border(image, spacing):
@@ -90,10 +157,6 @@ def draw_border(image, spacing):
                              outline=border_color,
                              radius=30)
     return image
-
-
-def get_size(size=sizefinal_alt):
-    return default_width_of_panel, description_action[i].count('\n') * default_line_height
 
 
 def write_multiline(image):
@@ -114,22 +177,8 @@ def write_multiline(image):
     return image
 
 
-def create_panel():
-    size_no_border = get_size()
-    keymap = Image.new('RGBA', size_no_border, bg_color)
-    keymap = write_multiline(keymap)
-    keymap = draw_border(keymap, margines)
-    return keymap
-
-
-def get_size_of_final_panels(panels_list):
-    width = 0
-    height = 0
-    for panel in panels_list:
-        width = panel.width + width
-        if height < panel.height:
-            height = panel.height
-    return width, height
+def get_size(size=sizefinal_alt):
+    return default_width_of_panel, description_action[i].count('\n') * default_line_height
 
 
 def generate_merged_panel(panels_list):
@@ -141,6 +190,16 @@ def generate_merged_panel(panels_list):
         final_image.paste(panel, (x_cord, 0))
         x_cord = x_cord + w
     return final_image
+
+
+def get_size_of_final_panels(panels_list):
+    width = 0
+    height = 0
+    for panel in panels_list:
+        width = panel.width + width
+        if height < panel.height:
+            height = panel.height
+    return width, height
 
 
 def add_title_banner(image):
@@ -155,21 +214,6 @@ def add_title_banner(image):
     image_with_banner.paste(banner, (0, 0))
     image_with_banner.paste(image, (0, banner.height))
     return image_with_banner
-
-
-def main():
-    set_style('OLED')
-    global i
-    panels = list()
-    for _ in range(len(description_action)):
-        panel = create_panel()
-        # panel.save(f'{filename}{i}.png')
-        panels.append(panel)
-        i = i + 1
-    final_image = generate_merged_panel(panels)
-    if banner_title:
-        final_image = add_title_banner(final_image)
-    final_image.save(f'{filename}_final.png')
 
 
 if __name__ in '__main__':
