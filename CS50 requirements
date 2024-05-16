@@ -25,16 +25,9 @@ This file should include your Project title, the URL of your video (created in s
     #### Video Demo:  <URL HERE>
     #### Description:
     TODO
-If unfamiliar with Markdown syntax, you might find GitHub’s Basic Writing and Formatting Syntax helpful.
- If you are using the CS50 Codespace and are prompted to “Open in CS50 Lab”, you can simply press cancel
- to open in the Editor. You can also preview your .md file by clicking the ‘preview’ icon as explained
- here: Markdown Preview in vscode. Standard software project READMEs can often run into the thousands or
- tens of thousands of words in length; yours need not be that long, but should at least be several hundred
- words that describe things in detail!
 
-Your README.md file should be minimally multiple paragraphs in length, and should explain what your project is,
-what each of the files you wrote for the project contains and does, and if you debated certain design choices,
-explaining why you made them. Ensure you allocate sufficient time and energy to writing a README.md that documents
+if you debated certain design choices, explaining why you made them.
+Ensure you allocate sufficient time and energy to writing a README.md that documents
 your project thoroughly. Be proud of it! A README.md in the neighborhood of 500 words is likely to be sufficient
 for describing your project and all aspects of its functionality. If unable to reach that threshold, that probably
 means your project is insufficiently complex.
@@ -46,11 +39,10 @@ Execute the submit50 command below from within your ~/project directory (or from
 
 submit50 cs50/problems/2022/python/project
 Trouble Submitting?
+
 Step 3 of 3
 That’s it! Your project should be graded within a few minutes. Be sure to visit your gradebook at cs50.me/cs50p
 a few minutes after you submit. It’s only by loading your Gradebook that the system can check to see whether
 you have completed the course, and that is also what triggers the (instant) generation of your free CS50 Certificate
 and the (within 30 days) generation of the Verified Certificate from edX,
 if you’ve completed all of the other assignments.
-
-This was CS50P!
