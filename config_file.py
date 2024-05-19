@@ -13,7 +13,7 @@ class ConfigurationClass:
     font_size_title = 0
     default_width_of_panel = 0
     font = ""
-    style = ""
+    style = list()
     description_action = ()
     description_key = ()
     bg_color = ""
@@ -41,9 +41,11 @@ class ConfigurationClass:
         self.font = "DroidSans.ttf"  # font for Linux Machines
 
         # uncomment one style
+        self.style_list = ['OLED', 'printer', 'ROSEPINE', 'GRUVBOX', 'LIGHT', 'DARK', 'CUSTOM']
+        self.style = ''
         # self.style = 'OLED'
         # self.style = 'printer'
-        self.style = 'ROSEPINE'
+        # self.style = 'ROSEPINE'
         # self.style = 'GRUVBOX'
         # self.style = 'LIGHT'
         # self.style = 'DARK'
