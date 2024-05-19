@@ -80,8 +80,11 @@ Tested on Python 3.11 and 3.12
 ### Ideas for next changes
 
 - move configuration to separate file (JSON or xml)
+  - Moved to other .py file and there is a class that contains the configuration
 - move action and key list to separate file (csv?)
+  - Moved to other .py file and there is a class that contains the configuration
 - more error handling
+- GUI
 
 ### checklist
 - [x] main i 3 funckje
