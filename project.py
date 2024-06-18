@@ -1,18 +1,24 @@
 import sys
 import PIL.ImageOps
 from PIL import Image, ImageDraw, ImageFont
+from GUI_component import C
+from GUI_component import start_gui
 from config_file import ConfigurationClass
 
 
 i = 0  # used as index for description lists
 sizefinal_alt = (1024, 1024)
 global C
-C = ConfigurationClass()
+# C = ConfigurationClass()
 
 
 def main():
     # c = ConfigurationClass()
-    C.set_style(C.style)
+    start_gui()
+    do_eveything()
+
+
+def do_eveything():
     global i
     panels = list()
     for _ in range(len(C.description_action)):
