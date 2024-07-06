@@ -1,10 +1,8 @@
 import sys
-import PIL
-from PIL import Image, ImageDraw, ImageFont
+from PIL import ImageFont
 
 
 class ConfigurationClass:
-
     filename = ''
     banner_title = ''
     margines = 0
@@ -23,7 +21,6 @@ class ConfigurationClass:
     banner_height = 0
     default_line_height = 0
 
-
     def __init__(self):
 
         self.filename = "PyCharm"
@@ -39,17 +36,13 @@ class ConfigurationClass:
         self.default_width_of_panel = 420
         # self.font = "arial.ttf"  # font for windows machines
         self.font = "DroidSans.ttf"  # font for Linux Machines
+        # self.font = "JetBrainsMono - Medium.ttf"
 
-        # uncomment one style
         self.style_list = ['OLED', 'printer', 'ROSEPINE', 'GRUVBOX', 'LIGHT', 'DARK', 'CUSTOM']
-        self.style = ''
-        # self.style = 'OLED'
-        # self.style = 'printer'
-        # self.style = 'ROSEPINE'
-        # self.style = 'GRUVBOX'
-        # self.style = 'LIGHT'
-        # self.style = 'DARK'
-        # self.style = 'CUSTOM' # feel free to create color scheme that suits you
+        # defaul style
+        self.style = 'LIGHT'
+        # feel free to create color scheme that suits you in set_style() case == CUSTOM
+        # self.style = 'CUSTOM'
 
         # Make sure that every "key" has its "action", \n is also ok.
         self.description_action = ((f'Run/Debug\n'
@@ -108,7 +101,6 @@ class ConfigurationClass:
             self.font_desc = ImageFont.truetype(self.font, self.font_size_desc)
         except OSError:
             sys.exit("Font can't be found or opened")
-
 
         # default colors
         self.bg_color = 'white'
