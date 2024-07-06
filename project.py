@@ -142,22 +142,22 @@ def update(sender, app_data, user_data):
     local_1 = dpg.get_value("description_action(1)")
     local_2 = dpg.get_value("description_action(2)")
     if len(local_0) > 1:
-        local_description_action.append(local_0)
+        local_description_action.append(local_0 + '\n')
     if len(local_1) > 1:
-        local_description_action.append(local_1)
+        local_description_action.append(local_1 + '\n')
     if len(local_2) > 1:
-        local_description_action.append(local_2)
+        local_description_action.append(local_2 + '\n')
     C.description_action = local_description_action
     local_description_key = list()
     local_0 = dpg.get_value("description_key(0)")
     local_1 = dpg.get_value("description_key(1)")
     local_2 = dpg.get_value("description_key(2)")
     if len(local_0) > 1:
-        local_description_key.append(local_0)
+        local_description_key.append(local_0 + '\n')
     if len(local_1) > 1:
-        local_description_key.append(local_1)
+        local_description_key.append(local_1 + '\n')
     if len(local_2) > 1:
-        local_description_key.append(local_2)
+        local_description_key.append(local_2 + '\n')
     C.description_key = local_description_key
 
 
@@ -166,7 +166,7 @@ def start_gui():
     first_col = 10
     second_col = 250
     # dpg.create_viewport(title=C.banner_title, width=817, height=920)
-    dpg.create_viewport(title=C.banner_title, width=801, height=885)
+    dpg.create_viewport(title='Configuration for cheatsheet generator', width=801, height=885)
     viewport_width = dpg.get_viewport_width()
 
     with dpg.window(tag='main_window', width=viewport_width, height=365, no_title_bar=True, no_resize=True, pos=[0, 0],
@@ -197,8 +197,8 @@ def start_gui():
         dpg.add_button(label="Change data", callback=update, width=100, pos=[second_col + 200, 300])
         dpg.add_button(label="Execute", callback=do_everything, width=100, pos=[second_col + 200, 325])
 
-    with dpg.window(tag='description_action', width=viewport_width/2, height=520, no_title_bar=True, no_resize=True, pos=[0, 365],
-                    no_move=True, no_collapse=True):
+    with dpg.window(tag='description_action', width=viewport_width/2, height=520, no_title_bar=True, no_resize=True,
+                    pos=[0, 365], no_move=True, no_collapse=True):
         dpg.add_text("Description: ", pos=[first_col, 0])
         dpg.add_input_text(tag="description_action(0)", default_value=C.description_action[0], multiline=True,
                            height=150, width=380, pos=[first_col, 25])
@@ -206,8 +206,8 @@ def start_gui():
                            height=150, width=380, pos=[first_col, 190])
         dpg.add_input_text(tag="description_action(2)", default_value=C.description_action[2], multiline=True,
                            height=150, width=380, pos=[first_col, 355])
-    with dpg.window(tag='description_key', width=viewport_width/2, height=520, no_title_bar=True, no_resize=True, pos=[viewport_width/2+1, 365],
-                    no_move=True, no_collapse=True):
+    with dpg.window(tag='description_key', width=viewport_width/2, height=520, no_title_bar=True, no_resize=True,
+                    pos=[viewport_width/2+1, 365], no_move=True, no_collapse=True):
         dpg.add_text("Key: ", pos=[first_col, 0])
         dpg.add_input_text(tag="description_key(0)", default_value=C.description_key[0], multiline=True, height=150,
                            width=viewport_width/2-2*first_col, pos=[first_col, 25])
