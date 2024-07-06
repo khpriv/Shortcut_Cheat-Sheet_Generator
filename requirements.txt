@@ -1,2 +1,4 @@
 sys
 pillow
+dearpygui
+pytest
