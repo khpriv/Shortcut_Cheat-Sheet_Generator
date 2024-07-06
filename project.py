@@ -1,11 +1,13 @@
 import PIL.ImageOps
 from PIL import Image, ImageDraw
-from config_file import ConfigurationClass
+
 import dearpygui.dearpygui as dpg
+
+from config_file import ConfigurationClass
+C = ConfigurationClass()
 
 i = 0  # used as index for description lists
 sizefinal_alt = (1024, 1024)
-C = ConfigurationClass()
 
 
 def main():
