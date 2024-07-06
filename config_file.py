@@ -1,10 +1,8 @@
 import sys
-import PIL
-from PIL import Image, ImageDraw, ImageFont
+from PIL import ImageFont
 
 
 class ConfigurationClass:
-
     filename = ''
     banner_title = ''
     margines = 0
@@ -13,7 +11,7 @@ class ConfigurationClass:
     font_size_title = 0
     default_width_of_panel = 0
     font = ""
-    style = ""
+    style = list()
     description_action = ()
     description_key = ()
     bg_color = ""
@@ -23,9 +21,7 @@ class ConfigurationClass:
     banner_height = 0
     default_line_height = 0
 
-
     def __init__(self):
-
         self.filename = "PyCharm"
         # Leave as "" if You don't want to add title banner
         self.banner_title = "PyCharm keybinds"
@@ -37,17 +33,8 @@ class ConfigurationClass:
         self.font_size_title = 70
         # Controls how far apart "action" and "key" columns are
         self.default_width_of_panel = 420
-        # self.font = "arial.ttf"  # font for windows machines
-        self.font = "DroidSans.ttf"  # font for Linux Machines
-
-        # uncomment one style
-        # self.style = 'OLED'
-        # self.style = 'printer'
-        self.style = 'ROSEPINE'
-        # self.style = 'GRUVBOX'
-        # self.style = 'LIGHT'
-        # self.style = 'DARK'
-        # self.style = 'CUSTOM' # feel free to create color scheme that suits you
+        self.banner_height = self.font_size_title * 2
+        self.default_line_height = self.font_size_desc + self.line_spacing
 
         # Make sure that every "key" has its "action", \n is also ok.
         self.description_action = ((f'Run/Debug\n'
@@ -101,21 +88,26 @@ class ConfigurationClass:
                                     f'\n'
                                 ))
 
+        # self.font = "arial.ttf"  # font for windows machines
+        self.font = "DroidSans.ttf"  # font for Linux Machines
+        # self.font = "JetBrainsMono - Medium.ttf"
         try:
             self.font_title = ImageFont.truetype(self.font, self.font_size_title)
             self.font_desc = ImageFont.truetype(self.font, self.font_size_desc)
         except OSError:
             sys.exit("Font can't be found or opened")
 
-
+        self.style_list = ['OLED', 'printer', 'ROSEPINE', 'GRUVBOX', 'LIGHT', 'DARK', 'CUSTOM']
+        # defaul style
+        self.style = 'LIGHT'
+        # feel free to create color scheme that suits you in set_style() case == CUSTOM
+        # self.style = 'CUSTOM'
         # default colors
         self.bg_color = 'white'
         self.border_color = 'white'
         self.font_desc_color = 'black'
         self.font_title_color = 'black'
 
-        self.banner_height = self.font_size_title * 2
-        self.default_line_height = self.font_size_desc + self.line_spacing
 
     def set_style(self, styl):
         match styl:
