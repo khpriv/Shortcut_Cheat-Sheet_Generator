@@ -1,5 +1,5 @@
 # KEY SHORTCUT CHEAT-SHEET GENERATOR
-#### Video Demo:  <URL HERE>
+
 ### Description:
 A script to generate cheat sheets with keybinds.
 
@@ -59,11 +59,6 @@ Dependencies (also listed inside requirements.txt):
 
 Tested on Python 3.11 and 3.12
 
-## What did I learn?
-Besides increasing my Python coding skills a little bit, I learned GUI framework which is very powerful and will propably help me with my next Python projects.
-
-But bigger lesson is that architecture should be a big consideration while coming up with a program. Lesson learned too late, which results in little test coverage and poor structure. Instance of class is pretty much used as container for global variables and functions have small or no interfaces, but a lot of side effects.   
-
 ### Ideas for next changes
 
 - [x] move configuration to separate file (JSON or xml)
@@ -73,14 +68,3 @@ But bigger lesson is that architecture should be a big consideration while comin
 - [ ] more error handling
 - [x] GUI
 - [ ] refactor for testability
-
-### checklist
-- [x] main and 3 functions
-- [x] tests for 3 functions
-- [x] Your main function must be in a file called project.py, which should be in the “root” (i.e., top-level folder) of your project.
-- [x] Your 3 required custom functions other than main must also be in project.py and defined at the same indentation level as main
-- [x] Your test functions must be in a file called test_project.py, which should also be in the “root” of your project.
-- [x] Any pip-installable libraries that your project requires must be listed, one per line, in a file called requirements.txt in the root of your project.
-- [x] What will your software do? What features will it have? How will it be executed?
-- [x] What new skills will you need to acquire? What topics will you need to research?
-- [x] Color schemes - OLED/GRUBBOX/ROSEPINE/PRINT/WHITE THEME/DARK THEME
